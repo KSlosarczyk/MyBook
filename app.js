@@ -1,4 +1,3 @@
-
 var firebaseConfig = {
     apiKey: "AIzaSyAMu_JIQpYHQUhDT4_EnG7sdQqV6LrOW9E",
     authDomain: "favouritebook-5a724.firebaseapp.com",
@@ -58,13 +57,7 @@ function renderBook(doc){
 
 
 }
-//Get Data from DataBase
-db.collection('Books').get().then((snapshot) => {
-    snapshot.docs.forEach(doc => {
-        renderBook(doc);
-        }
-    )
-})
+
 //Save Data to DataBase
 form.addEventListener('submit', (e)=> {
     e.preventDefault(); //Page doesnt refresh after submitting text
@@ -78,3 +71,18 @@ form.addEventListener('submit', (e)=> {
     })
     form.reset(); //full reset of items above after submitting
 })
+//Get Data from DataBase
+
+// real-time listener
+db.collection('Books').orderBy('Name').onSnapshot(snapshot => {
+    let changes = snapshot.docChanges();
+    changes.forEach(change => {
+        console.log(change.doc.data());
+        if(change.type == 'added'){
+            renderBook(change.doc);
+        } else if (change.type == 'removed'){
+            let li = bookList.querySelector('[data-id=' + change.doc.id + ']');
+            bookList.removeChild(li);
+        }
+    });
+});
