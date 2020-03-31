@@ -48,6 +48,15 @@ function renderBook(doc){
 
     bookList.appendChild(li);
 
+    //Delete Data
+    cross.addEventListener('click', (e)=>{
+        e.stopPropagation();
+        let id = e.target.parentElement.getAttribute('data-id');
+        db.collection('Books').doc(id).delete(); //Reference with ID
+    })
+
+
+
 }
 //Get Data from DataBase
 db.collection('Books').get().then((snapshot) => {
