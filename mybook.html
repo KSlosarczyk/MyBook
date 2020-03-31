@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-firestore.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>My Book</title>
+</head>
+<body>
+    <h1>My Book</h1>
+        <div class="content">
+            <form id="add-book">
+                <input type="text" name="Name" placeholder="Author name">
+                <input type="text" name="Surname" placeholder="Author surname">
+                <input type="text" name="Title" placeholder="Book title">
+                <input type="text" name="Genre" placeholder="Genre">
+                <input type="text" name="Published" placeholder="Year">
+                <input type="text" name="ISBN" placeholder="ISBN">
+                <button id="saveButton">Add to my library</button>
+            </form>
+            <ul id="book-list"></ul>
+        </div>
+
+    <script src="./app.js"></script>
+
+</body>
+</html>
